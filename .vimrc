@@ -24,26 +24,6 @@ if has("win32") || isdirectory($WINDIR)
 	set guifont=Lucida\ Console/Regular/9
 endif
 
-"ctags stuff
-if has("win32")
-	"win32 (g)VIM
-	let g:uservim = "$HOME\\vimfiles\\"
-	let g:usertags = g:uservim."tags\\"
-	let g:ctags_bin= g:uservim."bin\\win32\\ctags.exe"
-elseif isdirectory($WINDIR)
-	"cygwin VIM
-	let g:uservim = "$HOME/.vim/"
-	let g:ctags_bin=g:uservim."/bin/cygwin/ctags.exe"
-	let g:usertags = g:uservim."tags/"
-else
-	"posix VIM
-	let g:uservim = "$HOME/.vim/"
-	let g:ctags_bin="ctags"
-	let g:usertags = g:uservim."tags/"
-endif
-
-let Tlist_Ctags_Cmd=expand(g:ctags_bin)
-
 "increase vim buffer to 50 files and yank buffer to 5000 lines
 set viminfo='50,"5000
 
@@ -55,80 +35,6 @@ set ff=unix
 set backspace=eol,start,indent
 noremap  
 inoremap  
-
-"stuff for omnicomplete
-set nocp
-filetype plugin on
-
-"python stuff
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-"Don't show docs in preview window
-au FileType python setlocal completeopt-=preview
-"Error at :make
-autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stderr=sys.stdout;\ py_compile.compile(r'%')\"
-autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m 
-
-"this is defined in python PEP8 programming guide
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
-let t_python=g:usertags."python"
-autocmd FileType python execute ':setlocal tags+='.t_python
-
-"web stuff
-au FileType xhtml,html,htm,php,xml filetype plugin indent on
-au FileType xhtml,html,htm,php,xml setlocal ts=2 sw=2 expandtab
-autocmd FileType sql set omnifunc=sqlcomplete#Complete
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd BufNewFile,BufRead *.csv setf csv
-let g:csv_delimiter = "\t"
-
-"java stuff
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete 
-au FileType java setlocal makeprg=ant
-
-"c sharp stuff
-"autocmd FileType cs setlocal omnifunc=ccomplete#Complete
-au FileType cs set omnifunc=syntaxcomplete#Complete
-au FileType cs setlocal foldmethod=marker
-au FileType cs setlocal foldmarker={,}
-au FileType cs setlocal foldtext=substitute(getline(v:foldstart),'{.*','{...}',)
-au FileType cs setlocal foldlevelstart=2  
-
-"c++ and c stuff
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-autocmd FileType c,cpp setlocal omnifunc=ccomplete#Complete
-
-let t_glibc = g:usertags."glibc"
-autocmd FileType c,cpp execute ':setlocal tags+='.t_glibc
-
-"other file specific stuff
-au BufReadCmd *.jar,*.xpi,*.apk call zip#Browse(expand("<amatch>"))
-
-"tag files, build with 
-if has("win32")
-	let t_stdcpp = g:usertags."cpp_win32"
-	autocmd FileType cpp execute ':setlocal tags+='.t_stdcpp
-else
-	let t_stdcpp = g:usertags."cpp_posix"
-	autocmd FileType cpp execute ':setlocal tags+='.t_stdcpp
-endif
-let t_sdl = g:usertags."SDL"
-autocmd FileType c,cpp execute ':setlocal tags+='.t_sdl
-
-let t_gl = g:usertags."GL"
-autocmd FileType c,cpp execute ':setlocal tags+='.t_gl
-
-let t_opencv = g:usertags."opencv"
-autocmd FileType c,cpp execute ':setlocal tags+='.t_opencv
-
-let t_cl = g:usertags."opencl"
-autocmd FileType c,cpp execute ':setlocal tags+='.t_cl
-
-
 
 "get more options
 set completeopt=longest,menuone
@@ -145,25 +51,6 @@ inoremap <C-Space> <C-x><C-o>
 "buggy vim oO
 inoremap <C-@> <C-x><C-o>
 
-"taglist
-"CTRL+b = build project related tags
-"map <C-b> :echo silent ctags . -R --fields=+iaS --extra=+q . 2>&1 > /dev/null <CR><CR>;
-function! UpdateCTags()
-	if has("win32")
-		let _result_ = system("del tags")
-	else
-		let _result_ = system("rm tags")
-	endif
-	unlet _result_
-	let _result_ = system(g:ctags_bin ." . -R --fields=+iaS --extra=+q .")
-	unlet _result_
-	redraw
-endfunction
-
-"map manualy on ctrl + b building tags file
-"map <C-b> :call UpdateCTags() <CR> <CR>
-"map auto build new tag file on write
-autocmd BufWritePost *.cpp,*.h,*.c,*.py call UpdateCTags()
 
 "dont resize terminal (be gnu screen friendly)
 let Tlist_inc_Winwidth = 0
@@ -264,3 +151,6 @@ endif
 "	set t_kP=^[[5;*~
 "endif
 
+let g:clang_c_options = '-std=gnu17'
+let g:clang_cpp_options = '-xc++ -std=gnu++17 '
+let g:clang_auto = 0
