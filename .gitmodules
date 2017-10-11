@@ -5,3 +5,12 @@
 [submodule ".vim/pack/plugins/start/Spacegray.vim"]
 	path = .vim/pack/plugins/start/Spacegray.vim
 	url = https://github.com/ajh17/Spacegray.vim
+[submodule ".vim/pack/plugins/start/CtrlP"]
+	path = .vim/pack/plugins/start/CtrlP
+	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/pack/plugins/start/vim-pencil"]
+	path = .vim/pack/plugins/start/vim-pencil
+	url = https://github.com/reedes/vim-pencil
+[submodule ".vim/pack/plugins/start/vim-fugitive"]
+	path = .vim/pack/plugins/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
