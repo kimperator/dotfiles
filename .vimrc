@@ -154,3 +154,19 @@ endif
 let g:clang_c_options = '-std=gnu17'
 let g:clang_cpp_options = '-xc++ -std=gnu++17 '
 let g:clang_auto = 0
+
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-w><Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-w><Down> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-w><Up>   :TmuxNavigateUp<cr>
+nnoremap <silent> <C-w><Right> :TmuxNavigateRight<cr>
+
+nnoremap <silent> <S-Left> :TmuxNavigateLeft<cr>
+nnoremap <silent> <S-Down> :TmuxNavigateDown<cr>
+nnoremap <silent> <S-Up>   :TmuxNavigateUp<cr>
+nnoremap <silent> <S-Right> :TmuxNavigateRight<cr>
+
+
+
+
+
