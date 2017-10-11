@@ -20,3 +20,9 @@
 [submodule ".vim/pack/plugins/start/jellybeans"]
 	path = .vim/pack/plugins/start/jellybeans
 	url = https://github.com/nanotech/jellybeans.vim
+[submodule ".vim/pack/plugins/start/vimux"]
+	path = .vim/pack/plugins/start/vimux
+	url = https://github.com/benmills/vimux/
+[submodule ".vim/pack/plugins/start/vimux-golang"]
+	path = .vim/pack/plugins/start/vimux-golang
+	url = https://github.com/benmills/vimux-golang

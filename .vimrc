@@ -169,4 +169,6 @@ nnoremap <silent> <S-Right> :TmuxNavigateRight<cr>
 
 
 
+nnoremap <C-e> :VimuxPromptCommand<CR>
+nnoremap <C-l> :VimuxRunLastCommand<CR>
 
