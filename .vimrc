@@ -11,7 +11,9 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 "nice color mode
-colorscheme putty
+colorscheme spacegray
+let g:spacegray_underline_search = 1
+let g:spacegray_italicize_comments = 1
 
 "sets default complete
 "autocmd Filetype * set omnifunc=syntaxcomplete#Complete
