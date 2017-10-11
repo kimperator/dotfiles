@@ -17,3 +17,6 @@
 [submodule ".vim/pack/plugins/start/surround"]
 	path = .vim/pack/plugins/start/surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/pack/plugins/start/jellybeans"]
+	path = .vim/pack/plugins/start/jellybeans
+	url = https://github.com/nanotech/jellybeans.vim
