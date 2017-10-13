@@ -35,3 +35,6 @@
 [submodule ".vim/pack/plugins/start/syntastic"]
 	path = .vim/pack/plugins/start/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/pack/plugins/start/tagbar"]
+	path = .vim/pack/plugins/start/tagbar
+	url = git://github.com/majutsushi/tagbar

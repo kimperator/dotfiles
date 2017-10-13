@@ -155,6 +155,9 @@ let g:clang_c_options = '-std=gnu17'
 let g:clang_cpp_options = '-xc++ -std=gnu++17 '
 let g:clang_auto = 0
 
+set shell=sh
+
+
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-w><Left> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-w><Down> :TmuxNavigateDown<cr>
@@ -162,16 +165,14 @@ nnoremap <silent> <C-w><Up>   :TmuxNavigateUp<cr>
 nnoremap <silent> <C-w><Right> :TmuxNavigateRight<cr>
 
 nnoremap <silent> <S-Left> :TmuxNavigateLeft<cr>
+
 nnoremap <silent> <S-Down> :TmuxNavigateDown<cr>
 nnoremap <silent> <S-Up>   :TmuxNavigateUp<cr>
 nnoremap <silent> <S-Right> :TmuxNavigateRight<cr>
-
-
-
-
 nnoremap <C-e> :call VimuxOpenRunner()<CR>:sleep 10m<CR>:call VimuxSendKeys("C-c")<CR>:sleep 20m<CR>:VimuxPromptCommand<CR>
 nnoremap <C-l> :call VimuxSendKeys("C-c")<CR>:sleep 50m<CR>:VimuxRunLastCommand<CR>
-
 nnoremap <C-f> gg=G
 
-set shell=sh
+nnoremap <C-i> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
+
