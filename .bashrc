@@ -8,15 +8,13 @@
 PS1='[\u@\h \W]\$ '
 
 export EDITOR="vim"
-export TERMINAL="termite"
-export BROWSER="qutebrowser"
+export TERMINAL="lxterm"
+export BROWSER="links"
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
 export JAVA_FONTS=/usr/share/fonts/TTF
 export TERM=screen-256color
-export MAIL=~/Maildir
+export MAIL=~/.mail/
 
-
-alias td='todotxt-machine'
 
 if [ "$(uname -s)" == "Darwin" ]; then
     # Do something under OS X platform
@@ -30,16 +28,11 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
 elif [ "$(uname -s)" == "Linux" ]; then
     # Do something under GNU/Linux platform
-
-
     alias ls='ls --color=auto'
     alias rm='rm -I'
 
     # bug fixed in coreutils - no longer needed for termite!
     # eval $(dircolors ~/.dircolors.ansi-dark)
-
-    # ruby gem path, and bin directory in my home dir
-    PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH:~/bin"
 
     # simple stopwatch function
     function stopwatch(){ local tempdate=`date +%s`; while true; do echo -ne "$(date -u --date @$((`date +%s` - $tempdate)) +'   %H:%M:%S')\r"; sleep 0.2; done };
@@ -57,6 +50,12 @@ export HISTTIMEFORMAT="[%F %T] "
 export HISTCONTROL=ignoreboth
 shopt -s histappend
 
+alias tgz='tar -pczf'
+alias grep='grep --color=always'
+function mkcd () {
+	  mkdir -p "$1"
+	    cd "$1"
+    }
 
 [[ -f ~/.bashrc_local ]] && . ~/.bashrc_local
 

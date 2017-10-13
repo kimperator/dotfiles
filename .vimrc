@@ -172,3 +172,4 @@ nnoremap <silent> <S-Right> :TmuxNavigateRight<cr>
 nnoremap <C-e> :call VimuxOpenRunner()<CR>:sleep 10m<CR>:call VimuxSendKeys("C-c")<CR>:sleep 20m<CR>:VimuxPromptCommand<CR>
 nnoremap <C-l> :call VimuxSendKeys("C-c")<CR>:sleep 50m<CR>:VimuxRunLastCommand<CR>
 
+nnoremap <C-f> gg=G
