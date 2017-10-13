@@ -26,3 +26,6 @@
 [submodule ".vim/pack/plugins/start/vimux-golang"]
 	path = .vim/pack/plugins/start/vimux-golang
 	url = https://github.com/benmills/vimux-golang
+[submodule ".vim/pack/plugins/start/nerdtree"]
+	path = .vim/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

@@ -173,3 +173,5 @@ nnoremap <C-e> :call VimuxOpenRunner()<CR>:sleep 10m<CR>:call VimuxSendKeys("C-c
 nnoremap <C-l> :call VimuxSendKeys("C-c")<CR>:sleep 50m<CR>:VimuxRunLastCommand<CR>
 
 nnoremap <C-f> gg=G
+
+set shell=sh
