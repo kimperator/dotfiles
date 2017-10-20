@@ -176,3 +176,24 @@ nnoremap <C-f> gg=G
 nnoremap <C-i> :TagbarToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
+
+" Spelling
+
+set nospell
+" change to german
+set spelllang=de,en
+let spellst = ["de", "en"]
+" toggle spelling with F2 key 
+map <F2> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
+" they were using white on white
+highlight PmenuSel ctermfg=black ctermbg=lightgray
+" limit it to just the top 10 items
+set sps=best,5
+" highlighting
+hi SpellBad ctermfg=Red ctermbg=Black cterm=underline
+hi SpellCap ctermfg=blue ctermbg=black cterm=underline
+
+imap <F4> <ESC>z=<CR>i
+nmap <F4> z=
+imap <F5> <ESC>zg<CR>i
+nmap <F5> zg
