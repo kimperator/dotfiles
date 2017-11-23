@@ -46,8 +46,8 @@ let Tlist_inc_Winwidth = 0
 map <C-o> :NERDTreeToggle<CR>
 "ignore some files
 let NERDTreeIgnore=['\.vim$', '\~$', '\.pyc$']
-"show line number in files
-set number
+"show line number and relative numbers in files
+set number "relativenumber
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -198,4 +198,11 @@ filetype plugin on
 "remapping leader key
 let mapleader = "-"
 
+"in visual block mode, drag with leader-left/right/up/down
+vmap <expr> <LEADER><LEFT>   DVB_Drag('left')
+vmap <expr> <LEADER><RIGHT>  DVB_Drag('right')
+vmap <expr> <LEADER><DOWN>   DVB_Drag('down')
+vmap <expr> <LEADER><UP>     DVB_Drag('up')
 
+"d will duplicate current marked block
+vmap <expr> D        DVB_Duplicate() 
