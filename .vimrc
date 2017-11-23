@@ -1,19 +1,7 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Jul 02
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"  copy $HOME/.vim to $HOME/vimfiles/
-"	    for OpenVMS:  sys$login:.vimrc
-
 "nice color mode
 colorscheme putty
 
-"sets default complete
+"set omnicomplete to default
 "autocmd Filetype * set omnifunc=syntaxcomplete#Complete
 
 "win32 stuff || cygwin stuff
@@ -27,11 +15,11 @@ endif
 "increase vim buffer to 50 files and yank buffer to 5000 lines
 set viminfo='50,"5000
 
-"use utf-8 as default file encoding and line ending
+"use utf-8 as default file encoding and unix line ending
 set enc=utf-8
 set ff=unix
 
-"some stupid stuff to fix for backspace
+"some stupid stuff to fix for backspace with win32/cygwin
 set backspace=eol,start,indent
 noremap  
 inoremap  
@@ -48,15 +36,11 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' : '<C-x><C-o><C-n><C-p><C-r>=pumvis
 
 "eclipse like completetion omni mapping (ctrl + space)
 inoremap <C-Space> <C-x><C-o>
-"buggy vim oO
+"buggy vim on win32 o_O
 inoremap <C-@> <C-x><C-o>
 
-
-"dont resize terminal (be gnu screen friendly)
+"dont resize terminal (be gnu screen & tmux friendly)
 let Tlist_inc_Winwidth = 0
-
-"CTRL+t = TagList of active File
-map <C-t> :TlistToggle<CR>
 
 "CTRL+o (open) nerdtree to choose file
 map <C-o> :NERDTreeToggle<CR>
@@ -146,44 +130,50 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-"if &term == "screen"
-"	set t_kN=^[[6;*~
-"	set t_kP=^[[5;*~
-"endif
-
+"let c++ omnicomplete handle c++17 syntax
 let g:clang_c_options = '-std=gnu17'
 let g:clang_cpp_options = '-xc++ -std=gnu++17 '
 let g:clang_auto = 0
 
+"fix for fish
 set shell=sh
 
-
+"tmux interaction
+"ctrl+w left/right/up/down will work seamless
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-w><Left> :TmuxNavigateLeft<cr>
 nnoremap <silent> <C-w><Down> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-w><Up>   :TmuxNavigateUp<cr>
 nnoremap <silent> <C-w><Right> :TmuxNavigateRight<cr>
 
+"but be lazy, shift + left/up/down/right will work, too!
 nnoremap <silent> <S-Left> :TmuxNavigateLeft<cr>
-
 nnoremap <silent> <S-Down> :TmuxNavigateDown<cr>
 nnoremap <silent> <S-Up>   :TmuxNavigateUp<cr>
 nnoremap <silent> <S-Right> :TmuxNavigateRight<cr>
+
+"ctrl + e run command in (new) tmux windows, sends ctrl+c and executes the
+"command
 nnoremap <C-e> :call VimuxOpenRunner()<CR>:sleep 10m<CR>:call VimuxSendKeys("C-c")<CR>:sleep 20m<CR>:VimuxPromptCommand<CR>
+
+"ctrl + l will run last command
 nnoremap <C-l> :call VimuxSendKeys("C-c")<CR>:sleep 50m<CR>:VimuxRunLastCommand<CR>
+
+"ctrl + f will reindent the current file
 nnoremap <C-f> gg=G
 
-nnoremap <C-i> :TagbarToggle<CR>
+"ctrl + t or f8 will show tagbar
+nnoremap <C-t> :TagbarToggle<CR>
 nnoremap <F8> :TagbarToggle<CR>
 
 
 " Spelling
-
+" default settings are no spelling enabled
 set nospell
-" change to german
+" change to german and english
 set spelllang=de,en
 let spellst = ["de", "en"]
-" toggle spelling with F2 key 
+" f2 will toggle spelling
 map <F2> :set spell!<CR><Bar>:echo "Spell Check: " . strpart("OffOn", 3 * &spell, 3)<CR>
 " they were using white on white
 highlight PmenuSel ctermfg=black ctermbg=lightgray
@@ -193,7 +183,10 @@ set sps=best,5
 hi SpellBad ctermfg=Red ctermbg=Black cterm=underline
 hi SpellCap ctermfg=blue ctermbg=black cterm=underline
 
+"f4 find suggestion for spelled word
 imap <F4> <ESC>z=<CR>i
 nmap <F4> z=
+
+"f5 add word to user dictionary
 imap <F5> <ESC>zg<CR>i
 nmap <F5> zg
