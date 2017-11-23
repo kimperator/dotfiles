@@ -190,3 +190,12 @@ nmap <F4> z=
 "f5 add word to user dictionary
 imap <F5> <ESC>zg<CR>i
 nmap <F5> zg
+
+"vimwiki settings
+"- ww will start wiki"
+filetype plugin on
+
+"remapping leader key
+let mapleader = "-"
+
+
